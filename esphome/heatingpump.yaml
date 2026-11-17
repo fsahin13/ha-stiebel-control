@@ -13,21 +13,21 @@
 substitutions:
   device_name: heatingpump
   friendly_name: "Stiebel Eltron Wärmepumpe"
-  device_model: "wpl13e"          # used in HA device identifier (stiebel_eltron_<model>)
+  device_model: "wpl9"          # used in HA device identifier (stiebel_eltron_<model>)
   language: "DE"                  # display language for HA entity names: DE (default) or EN
   # CAN pins for ESP32-S3 built-in TWAI controller
   can_tx_pin: GPIO15  # TXD2 on Waveshare board
   can_rx_pin: GPIO16  # RXD2 on Waveshare board
   can_id_pc: "0x680"
-  can_bit_rate: 20kbps             # 20kbps = CAN-A (WPL13E/WPF10/WPC7); WPL17/WPL23/WPL10AC need 50kbps (CAN-B)
+  can_bit_rate: 50kbps             # 20kbps = CAN-A (WPL13E/WPF10/WPC7); WPL17/WPL23/WPL10AC need 50kbps (CAN-B)
   # disable_sg_ready: "true"      # hide SG Ready entities in HA (default "false")
-  # read_only: "true"             # never write to the heat pump: no setpoints, modes or clock sync (default "false")
+  read_only: "true"             # never write to the heat pump: no setpoints, modes or clock sync (default "false")
 
 packages:
   board: !include ha-stiebel-control/board_esp32s3.yaml
   can: !include ha-stiebel-control/can_esp32.yaml
   base: !include ha-stiebel-control/common.yaml
-  sensors: !include ha-stiebel-control/wpl13e.yaml
+  sensors: !include ha-stiebel-control/wpl9.yaml
   # Optional: drop the captive portal and fallback hotspot (saves flash, Wi-Fi only via secrets.yaml)
   # no_captive_portal: !include ha-stiebel-control/no_captive_portal.yaml
 
